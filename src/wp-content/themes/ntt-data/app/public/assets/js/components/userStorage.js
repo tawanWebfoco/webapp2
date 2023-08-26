@@ -1,3 +1,5 @@
+console.log('> UserStorage.JS');
+
 class UserStorage {
   // COLLECTION_USERS imported from global.js
   
@@ -9,6 +11,10 @@ class UserStorage {
   }
 
   setStorage(user) {
-    localForage.setItem(COLLECTION_USERS, user);
+    localStorage.setItem(COLLECTION_USERS, JSON.stringify(user));
+  }
+
+  removeStorage() {
+    localStorage.removeItem(COLLECTION_USERS);
   }
 }

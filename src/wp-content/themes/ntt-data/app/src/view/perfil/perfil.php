@@ -13,13 +13,13 @@
                             $image_extension = pathinfo($url_img, PATHINFO_EXTENSION);
 
                             // Adiciona "-100x100" antes da extensão
-                            // $new_image_url = preg_replace('/\.' . $image_extension . '$/', '-100x100.' . $image_extension, $url_img);
+                            // $new_image_url = preg_replace('//.' . $image_extension . '$/', '-100x100.' . $image_extension, $url_img);
                             // $url_img = $new_image_url;
                         } else {
-                            $url_img = get_stylesheet_directory_uri() . '/app/public\assets\img\photos/perfil/img-perfil.svg';
+                            $url_img = get_stylesheet_directory_uri() . '/app/public/assets/img/photos/perfil/img-perfil.svg';
                         }
                     } else {
-                        $url_img = get_stylesheet_directory_uri() . '/app/public\assets\img\photos/perfil/img-perfil.svg';
+                        $url_img = get_stylesheet_directory_uri() . '/app/public/assets/img/photos/perfil/img-perfil.svg';
 
                     }
                     ?>
@@ -30,7 +30,7 @@
                 <!-- Imagem clicável -->
                 <a id="uploadLink" href="#">
                     <img class="camera" id="uploadedImage"
-                        src="<?php echo get_stylesheet_directory_uri(); ?>/app/public\assets\img\icons/perfil/camera.svg"
+                        src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/img/icons/perfil/camera.svg"
                         alt="Imagem para Upload">
                 </a>
 
@@ -87,6 +87,7 @@
                 <div class="btnAction">
                     <button id="btn-edit-perfil" class="button dark-blue">Editar</button>
                     <button id="btn-save-perfil" class="button light-blue btn-disabled">Salvar</button>
+                    <button id="btn-logout-perfil" class="button light-blue">Sair</button>
                 </div>
             </div>
         </div>
@@ -106,7 +107,7 @@
                         <label class="label" for="email[]">e-mail</label>
                         <input type="email" name="email[]">
                         <img id="addEmail" class="addEmail"
-                            src="<?php echo get_stylesheet_directory_uri(); ?>/app/public\assets\img\icons/perfil/add-circle.svg"
+                            src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/img/icons/perfil/add-circle.svg"
                             alt="Imagem">
                     </div>
                 </div>
@@ -146,13 +147,14 @@
             </table>
         </div>
         <div class="regulation">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/app/public\assets\img\icons/cron/regulation.svg"
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/img/icons/cron/regulation.svg"
                 alt="Icone Regulamento">
             <span>Leia o regulamento</span>
         </div>
     </section>
 </div>
 
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public\assets\js\perfil/uploadImg.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public\assets\js\perfil/updatatePersonInfo.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public\assets\js\perfil/addRemoveEmail.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/perfil/logout.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/perfil/uploadImg.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/perfil/updatatePersonInfo.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/perfil/addRemoveEmail.js"></script>

@@ -1,6 +1,9 @@
+console.log('> Global JS')
+
 // Database Storage
 const DATABASE_NAME = '@ntt-data';
 const COLLECTION_USERS = `${DATABASE_NAME}:tbl_user`;
+const COLLECTION_TIMER = `${DATABASE_NAME}:tbl_timer`;
 
-// Base URL Api
+// Base URL API
 const WPBaseUrlAPI = 'http://localhost:3001/wp-json';

@@ -8,8 +8,12 @@ const timerView = new TimerView({
 });
 timerView.run();
 
+const userStorage = new UserStorage;
+console.log(userStorage.getStorage());
+
 const timerController = new TimerController({
-  timerView
+  timerView,
+  userStorage
 });
 
-timerView.timerController = timerController
+timerView.timerController = timerController;

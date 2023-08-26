@@ -58,7 +58,6 @@
     </section>
 </div>
 
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/global.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/timerStorage.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/timerController.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/timerView.js"></script>

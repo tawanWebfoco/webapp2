@@ -1,4 +1,6 @@
-    // const pageView = document.querySelector('.overflow .view')
+console.log('> Script.JS');
+
+// const pageView = document.querySelector('.overflow .view')
     let arrayNavMenu = document.querySelectorAll('nav.menu li');
     arrayNavMenu = Array.from(arrayNavMenu);
 
@@ -20,3 +22,17 @@
         })
     });
 
+// Logout if not exist storage
+(async function() {
+    const userStorage = new UserStorage;
+    const user = userStorage.getStorage();
+    // console.log('user logoot', user)
+    if (!user) {
+        fetch(`${WPBaseUrlAPI}/user/logout`, {
+        method: 'GET',
+        })
+        .then(data => window.location.assign('app'))
+        .catch(error => console.error('Error on request:', error));
+        // .then(data => console.log('logout', user))
+    }
+})();
