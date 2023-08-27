@@ -35,9 +35,9 @@
             <div class="title">Lorem ipsum dolor</div>
 
             <div class="buttons">
-                <button class="button dark-blue" id="ten">10 Minutos</button>
-                <button class="button dark-blue" id="thirty">30 Minutos</button>
-                <button class="button dark-blue" id="oneHour">1 Hora</button>
+                <button class="button dark-blue" id="btn-add-10-minutes">10 Minutos</button>
+                <button class="button dark-blue" id="btn-add-30-minutes">30 Minutos</button>
+                <button class="button dark-blue" id="btn-add-1-hour">1 Hora</button>
             </div>
             <div class="text">
                 <span>LIMITE DIÁRIO DE 2 HORAS EXERCÍCIOS</span>

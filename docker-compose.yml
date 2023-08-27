@@ -15,7 +15,7 @@ services:
       - ./.docker/mysql:/var/lib/mysql
       - ./docker-database.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - app-network
+      - NTTDATA-network
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
@@ -27,7 +27,7 @@ services:
     environment:
       PMA_HOST: db
     networks:
-      - app-network
+      - NTTDATA-network
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
@@ -48,14 +48,14 @@ services:
       WORDPRESS_DB_NAME: wpdatabase
       WORDPRESS_DB_NAME_DOCKER: wpdatabase
     networks:
-      - app-network
+      - NTTDATA-network
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
 networks:
-  app-network:
+  NTTDATA-network:
     driver: bridge
 
 volumes:
-    mysql:
-    src:
+  .docker:
+  src:

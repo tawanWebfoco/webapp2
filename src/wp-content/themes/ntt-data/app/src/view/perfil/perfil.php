@@ -82,6 +82,12 @@
                                 <?= $user->username; ?>
                             </span>
                         </div>
+                        <div class="field">
+                            <label class="label" for="score">Pontos</label>
+                            <span>
+                                <?= $user->score; ?>
+                            </span>
+                        </div>
                     </div>
                 </form>
                 <div class="btnAction">

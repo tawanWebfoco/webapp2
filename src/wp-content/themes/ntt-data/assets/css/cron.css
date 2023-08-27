@@ -136,6 +136,7 @@ section.receivepubbox {
 .button.btn-disabled {
   background-color: var(--text-silver-light);
   cursor: default;
+  pointer-events: none;
 }
 
 
