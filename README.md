@@ -12,6 +12,12 @@ sudo docker rm -f (sudo docker ps -aq)
 sudo docker compose up
 ```
 
+### Add permission create folder and files (Linux)
+
+```
+sudo chmod -R 777 webapp2
+```
+
 ### Wordpress
 
 URL: [http://localhost:3001](http://localhost:3001)
