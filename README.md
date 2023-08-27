@@ -20,7 +20,10 @@ sudo chmod -R 777 webapp2
 
 ### Wordpress
 
+<b>OBS:</b> Install plugins manually in the WordPress control panel, under the "Plugins" tab. By default, WordPress displays the plugins that need to be installed. However, this method is not functional when there is a plugin that has been created manually.
+
 URL: [http://localhost:3001](http://localhost:3001)<br>
+Dashboard: [http://localhost:3001/wp-login.php](http://localhost:3001/wp-login.php)<br>
 
 ### PHPMyAdmin
 
