@@ -22,14 +22,14 @@ console.log('> Script.JS');
         })
     });
 
-// Logout if not exist storage
+// Logout if not exist user on storage to context global
 (async function() {
     const userStorage = new UserStorage;
     const user = userStorage.getStorage();
     // console.log('user logoot', user)
     if (!user) {
         fetch(`${WPBaseUrlAPI}/user/logout`, {
-        method: 'GET',
+            method: 'GET',
         })
         .then(data => window.location.assign('app'))
         .catch(error => console.error('Error on request:', error));

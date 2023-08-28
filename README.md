@@ -26,6 +26,8 @@ sudo chmod -R 777 webapp2
 
 URL: [http://localhost:3001](http://localhost:3001)<br>
 Dashboard: [http://localhost:3001/wp-login.php](http://localhost:3001/wp-login.php)<br>
+<b>Username:</b> tawan.rio@webfoco.com<br>
+<b>Password:</b> 123
 
 ---
 

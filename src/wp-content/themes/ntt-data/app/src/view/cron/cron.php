@@ -58,7 +58,7 @@
     </section>
 </div>
 
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/timerStorage.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/timerController.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/timerView.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/stopwatchStorage.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/stopwatchController.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/stopwatchView.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/app/public/assets/js/cron/index.js"></script>

@@ -1,19 +1,19 @@
 console.log('Cron.JS');
 
-const timerStorage = new TimerStorage;
+const stopwatchStorage = new StopwatchStorage;
 
-const timerView = new TimerView({
-  timerStorage,
-  timerController: null
+const stopwatchView = new StopwatchView({
+  stopwatchStorage,
+  stopwatchController: null
 });
-timerView.run();
+stopwatchView.run();
 
 const userStorage = new UserStorage;
 console.log(userStorage.getStorage());
 
-const timerController = new TimerController({
-  timerView,
+const stopwatchController = new StopwatchController({
+  stopwatchView,
   userStorage
 });
 
-timerView.timerController = timerController;
+stopwatchView.stopwatchController = stopwatchController;

@@ -91,7 +91,7 @@ add_action('rest_api_init', function () {
 function user_logout_callback()
 {
   session_start();
-  userLogoutJS();
+  // userLogoutJS();
   session_destroy();
   return new WP_REST_Response('', 200);
 }

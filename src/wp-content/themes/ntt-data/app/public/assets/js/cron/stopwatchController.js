@@ -1,25 +1,25 @@
-console.log('> Timer Controller');
+console.log('> Stopwatch Controller');
 
-class TimerController {
+class StopwatchController {
   // Dependences
-  timerView = null;
+  stopwatchView = null;
   userStorage = null;
 
   constructor(props) {
-    this.timerView = props.timerView;
+    this.stopwatchView = props.stopwatchView;
     this.userStorage = props.userStorage;
-    this.timerView.configureEventStopTimer(this.onSaveTimer.bind(this));
+    this.stopwatchView.configureEventStopStopwatch(this.onSaveStopwatch.bind(this));
     return this;
   }
 
-  async onSaveTimer() {
+  async onSaveStopwatch() {
     const user = this.userStorage.getStorage();
-    console.log('onSaveTimer:', user)
+    console.log('onSaveStopwatch:', user)
 
     const formData = new FormData();
     formData.append('id_user', user.id_user);
-    formData.append('time_stop', this.timerView.currentTime);
-    formData.append('time_score', this.timerView.points);
+    formData.append('time_stop', this.stopwatchView.currentTime);
+    formData.append('time_score', this.stopwatchView.points);
     formData.append('country', user.country);
     
     // WpBaseUrlAPI "imported" from global.js

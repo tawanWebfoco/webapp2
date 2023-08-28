@@ -1,14 +1,14 @@
-console.log('> Timer View');
+console.log('> Stopwatch View');
 
-class TimerView {
+class StopwatchView {
   // States
   intervalId;
   running = false;
   paused = false;
   currentTime = 0;
-  startTime = 0;
-  pauseTime = 0;
-  pauseStartTime = 0;
+  startStopwatch = 0;
+  pauseStopwatch = 0;
+  pauseStartStopwatch = 0;
   points = 0;
   hasExceededLimit = false;
   incrementTime = 0;
@@ -20,10 +20,10 @@ class TimerView {
   time10minutes = 600000; // equivalent a 0 hours, 10 minutes, 0 seconds, 0 milliseconds
 
   // Elements
-  cronHoursElement = document.querySelector('#cron-hours');
-  cronMinutesElement = document.querySelector('#cron-minutes');
-  cronSecondsElement = document.querySelector('#cron-seconds');
-  cronMilisecondsElement = document.querySelector('#cron-milliseconds');
+  stopwatchHoursElement = document.querySelector('#cron-hours');
+  stopwatchMinutesElement = document.querySelector('#cron-minutes');
+  stopwatchSecondsElement = document.querySelector('#cron-seconds');
+  stopwatchMilisecondsElement = document.querySelector('#cron-milliseconds');
 
   startButton = document.querySelector('#cron-play');
   pauseButton = document.querySelector('#cron-pause');
@@ -33,36 +33,36 @@ class TimerView {
   btnAdd1Hour = document.querySelector('#btn-add-1-hour');
 
   // Inject Dependences
-  timerStorage = null;
-  timerController = null;
+  stopwatchStorage = null;
+  stopwatchController = null;
 
   constructor(props) {
-    this.timerStorage = props.timerStorage;
-    this.timerController = props.timerController;
+    this.stopwatchStorage = props.stopwatchStorage;
+    this.stopwatchController = props.stopwatchController;
     return this;
   }
 
   run() {
     this._loadStorage();
     
-    this._configureEventStartTimer();
-    this._configureEventStartTimerAfterPaused();
-    this._configureEventPauseTimer();
+    this._configureEventStartStopwatch();
+    this._configureEventStartStopwatchAfterPaused();
+    this._configureEventPauseStopwatch();
 
-    this._configureEventBtnAddTimeOnTimer(this.btnAdd10Minutes, this.time10minutes);
-    this._configureEventBtnAddTimeOnTimer(this.btnAdd30Minutes, this.time30minutes);
-    this._configureEventBtnAddTimeOnTimer(this.btnAdd1Hour, this.time1hour);
+    this._configureEventBtnAddTimeOnStopwatch(this.btnAdd10Minutes, this.time10minutes);
+    this._configureEventBtnAddTimeOnStopwatch(this.btnAdd30Minutes, this.time30minutes);
+    this._configureEventBtnAddTimeOnStopwatch(this.btnAdd1Hour, this.time1hour);
   }
 
   _loadStorage() {
-    const state = this.timerStorage.getStatesFromLocalStorage();
+    const state = this.stopwatchStorage.getStatesFromLocalStorage();
 
     if (state) {
       this.running = state.running;
       this.paused = state.paused;
-      this.pauseStartTime = state.pauseStartTime;
-      this.pauseTime = state.pauseTime;
-      this.startTime = state.startTime;
+      this.pauseStartStopwatch = state.pauseStartStopwatch;
+      this.pauseStopwatch = state.pauseStopwatch;
+      this.startStopwatch = state.startStopwatch;
       this.currentTime = state.currentTime;
       this.incrementTime = state.incrementTime;
 
@@ -71,7 +71,7 @@ class TimerView {
       if (this.paused) return;
 
       if (this.running) {
-        this.intervalId = setInterval(this._updateTimer.bind(this), 10);
+        this.intervalId = setInterval(this._updateStopwatch.bind(this), 10);
         return;
       }
     }
@@ -96,19 +96,19 @@ class TimerView {
     return `${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}:${time.milliseconds.toString().padStart(2, '0')}`;
   }
 
-  _updateTimer() {
-    console.log('_updateTimer - new Date:', new Date().getTime());
-    console.log('_updateTimer - this.startTime:', this.startTime);
-    console.log('_updateTimer - this.pauseTime:', this.pauseTime);
-    console.log('_updateTimer - this.currentTime:', this.currentTime);
+  _updateStopwatch() {
+    console.log('_updateStopwatch - new Date:', new Date().getTime());
+    console.log('_updateStopwatch - this.startStopwatch:', this.startStopwatch);
+    console.log('_updateStopwatch - this.pauseStopwatch:', this.pauseStopwatch);
+    console.log('_updateStopwatch - this.currentTime:', this.currentTime);
 
-    this.currentTime = (new Date().getTime() - this.startTime - this.pauseTime) + this.incrementTime;
+    this.currentTime = (new Date().getTime() - this.startStopwatch - this.pauseStopwatch) + this.incrementTime;
 
     this._showTimerValues();
     this._disableButtons();
     
     if (this.currentTime >= this.limitTimePerDay && !this.hasExceededLimit) {
-      this._pauseTimer();
+      this._pauseStopwatch();
       this.hasExceededLimit = true;
       alert('Você excedeu o limite diário de 2 horas, clique em parar para salvar o tempo');
       return;
@@ -152,10 +152,10 @@ class TimerView {
     const seconds = Math.floor((this.currentTime % 60000) / 1000);
     const milliseconds = this.currentTime % 1000;
 
-    this.cronHoursElement.textContent = hours.toString().padStart(2, '0');
-    this.cronMinutesElement.textContent = minutes.toString().padStart(2, '0');
-    this.cronSecondsElement.textContent = seconds.toString().padStart(2, '0');
-    this.cronMilisecondsElement.textContent = milliseconds.toString().padStart(2, '0');
+    this.stopwatchHoursElement.textContent = hours.toString().padStart(2, '0');
+    this.stopwatchMinutesElement.textContent = minutes.toString().padStart(2, '0');
+    this.stopwatchSecondsElement.textContent = seconds.toString().padStart(2, '0');
+    this.stopwatchMilisecondsElement.textContent = milliseconds.toString().padStart(2, '0');
   }
 
   _stopTimer() {
@@ -166,87 +166,87 @@ class TimerView {
   _resetTimer() {
     clearInterval(this.intervalId);
 
-    this.cronHoursElement.textContent = '00';
-    this.cronMinutesElement.textContent = '00';
-    this.cronSecondsElement.textContent = '00';
-    this.cronMilisecondsElement.textContent = '99';
+    this.stopwatchHoursElement.textContent = '00';
+    this.stopwatchMinutesElement.textContent = '00';
+    this.stopwatchSecondsElement.textContent = '00';
+    this.stopwatchMilisecondsElement.textContent = '99';
     this.running = false;
     this.paused = false;
-    this.pauseStartTime = 0;
-    this.pauseTime = 0;
+    this.pauseStartStopwatch = 0;
+    this.pauseStopwatch = 0;
     this.incrementTime = 0;
 
     this._enableButtons();
 
-    this.timerStorage.removeStatesFromLocalStorage();
+    this.stopwatchStorage.removeStatesFromLocalStorage();
   }
 
-  _pauseTimer() {
+  _pauseStopwatch() {
     clearInterval(this.intervalId);
-    this.pauseStartTime = new Date().getTime();
+    this.pauseStartStopwatch = new Date().getTime();
     this.paused = true;
-    this.timerStorage.saveStatesOnLocalStorage(this._getStates());
+    this.stopwatchStorage.saveStatesOnLocalStorage(this._getStates());
   }
 
   _getStates() {
     return {
       running: this.running,
       paused: this.paused,
-      pauseStartTime: this.pauseStartTime,
-      pauseTime: this.pauseTime,
-      startTime: this.startTime,
+      pauseStartStopwatch: this.pauseStartStopwatch,
+      pauseStopwatch: this.pauseStopwatch,
+      startStopwatch: this.startStopwatch,
       currentTime: this.currentTime,
       incrementTime: this.incrementTime
     }
   }
 
-  _configureEventStartTimer() {
+  _configureEventStartStopwatch() {
     this.startButton.addEventListener('click', () => {
       if (!this.running) {
-        this.startTime = new Date().getTime() - this.pauseTime;
-        this.intervalId = setInterval(this._updateTimer.bind(this), 10); // Atualiza a cada 10 milissegundos
+        this.startStopwatch = new Date().getTime() - this.pauseStopwatch;
+        this.intervalId = setInterval(this._updateStopwatch.bind(this), 10); // Atualiza a cada 10 milissegundos
         this.running = true;
         this.paused = false;
-        this.timerStorage.saveStatesOnLocalStorage(this._getStates());
+        this.stopwatchStorage.saveStatesOnLocalStorage(this._getStates());
       }
     });
   }
 
-  _configureEventStartTimerAfterPaused() {
+  _configureEventStartStopwatchAfterPaused() {
     this.startButton.addEventListener('click', () => {
       if (this.running && this.paused) {
-        this.pauseTime += new Date().getTime() - this.pauseStartTime;
-        this.intervalId = setInterval(this._updateTimer.bind(this), 10);
+        this.pauseStopwatch += new Date().getTime() - this.pauseStartStopwatch;
+        this.intervalId = setInterval(this._updateStopwatch.bind(this), 10);
         this.running = true;
         this.paused = false;
-        this.timerStorage.saveStatesOnLocalStorage(this._getStates());
+        this.stopwatchStorage.saveStatesOnLocalStorage(this._getStates());
       }
     });
   }
 
-  _configureEventPauseTimer() {
+  _configureEventPauseStopwatch() {
     this.pauseButton.addEventListener('click', () => {
       if (this.running && !this.paused) {
-        this._pauseTimer();
+        this._pauseStopwatch();
       }
     });
   }
 
-  configureEventStopTimer(onSaveTimer) {
+  configureEventStopStopwatch(onSaveStopwatch) {
     this.stopButton.addEventListener('click', async () => {
       if (confirm('Deseja parar e salvar o tempo?')) {
         this._stopTimer();
         this._resetTimer()
-        await onSaveTimer();
+        await onSaveStopwatch();
       }
     });
   }
 
-  _configureEventBtnAddTimeOnTimer(btn, addTime) {
+  _configureEventBtnAddTimeOnStopwatch(btn, addTime) {
     btn.addEventListener('click', () => {
       this.incrementTime = this.currentTime + addTime;
       this.currentTime = this.incrementTime;
-      this.timerStorage.saveStatesOnLocalStorage(this._getStates());
+      this.stopwatchStorage.saveStatesOnLocalStorage(this._getStates());
       this._showTimerValues();
       this._disableButtons();
     });
